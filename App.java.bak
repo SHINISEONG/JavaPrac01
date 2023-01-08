@@ -26,7 +26,16 @@ class  Draw
 		System.out.print("조장 번호를 입력해 주세요.(조장은 총 "+numTeam+"명 입니다.)(조 순서대로 입력해주세요.)\n> ");
 		for (int i=0; i<numTeam; i++)
 		{
-			this.leader[i]=scanner.nextInt();
+
+			while (true)
+			{
+				this.leader[i]=scanner.nextInt();
+				if (leader[i]>0 && leader[i]<this.totalPeople+1)
+				{
+					break;
+				}
+				System.out.println("1~"+this.totalPeople+"까지의 숫자로 입력해주세요.");
+			}
 			this.leaderName[i]=this.teamName[this.leader[i]-1];
 			this.teamName[this.leader[i]-1]="_";
 		}
@@ -41,21 +50,20 @@ class  Draw
 			{
 				for (int j=0; j<this.numTeam; j++)
 				{
-					if (this.teamName[totalPeople-j-1] == "_")
+					if (this.teamName[totalPeople-j-1] != "_")
 					{
-						blankCnt++;
-					} else {
 						tmp = this.teamName[i];
 						this.teamName[i]=this.teamName[totalPeople-j-1];
 						this.teamName[totalPeople-j-1] = tmp;
 						blankCnt++;
 						break;
 					}
-
 				}
 			}
-
-
+			if (blankCnt==numTeam)
+			{
+				break;
+			}
 		}
 	}
 
@@ -144,23 +152,13 @@ class  Draw
 	}
 }// end of class
 
-/* -------
-class DrawArray extends Draw
-{
-	///field
-	
-	///constructor
-	public DrawArray(int totalPeople, int numTeamPeople){
-		super(totalPeople, numTeamPeople)
 
-	}
-}
----------*/
 
-/// main
+///AppClass
 public class App {
+	/// mainMethod
 public static void main(String[] args){
-	int numTeamPeople = 6;
+	int numTeamPeople = 3;
 	Draw draw = new Draw(numTeamPeople);
 	draw.setLeader();
 	draw.draw();
@@ -168,9 +166,3 @@ public static void main(String[] args){
 	draw.print();
  }// end of main
 }// end of appclass
-
-
-
-
-
-
