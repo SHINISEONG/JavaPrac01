@@ -37,7 +37,7 @@ class  Draw
 				System.out.println("1~"+this.totalPeople+"까지의 숫자로 입력해주세요.");
 			}
 			this.leaderName[i]=this.teamName[this.leader[i]-1];
-			this.teamName[this.leader[i]-1]="_";
+			this.teamName[this.leader[i]-1]="";
 		}
 	}
 	
@@ -46,11 +46,11 @@ class  Draw
 		int blankCnt=0;
 		for (int i=0; i<totalPeople; i++)
 		{
-			if (this.teamName[i] == "_")
+			if (this.teamName[i] == "")
 			{
 				for (int j=0; j<this.numTeam; j++)
 				{
-					if (this.teamName[totalPeople-j-1] != "_")
+					if (this.teamName[totalPeople-j-1] != "")
 					{
 						tmp = this.teamName[i];
 						this.teamName[i]=this.teamName[totalPeople-j-1];
@@ -101,7 +101,8 @@ class  Draw
 
 	public void print(){
 		///method variable
-		int balancer=0;
+		int balancer = (this.numTeamPeople*this.numTeam)-this.totalPeople;
+		int tmp=0;
 		System.out.println("======================================================================================");
 		System.out.println("\t\t\t\tNcloud 2기 조 편성(v1.1)\t\t\t\t");
 		System.out.println("======================================================================================");
@@ -136,31 +137,20 @@ class  Draw
 		}
 		System.out.println("\n--------------------------------------------------------------------------------------");
 		for(int i=0; i<this.numTeamPeople-1; i++){
-			balancer=0;
-			for(int j=0; j<this.numTeam; j++){
-				
-				// 개씹 하드코딩 시작
-				if (j==this.numTeam-1)
-				{
-					balancer = 1;
-				}
-				if ((i+(j*5))==((numTeamPeople-1)*numTeam))
-				{
-					break;
-				}if ((i+(j*5))==19)
-				{
-					System.out.print("\t_\t\t_");
-					break;
-				}
-				System.out.print("\t"+this.teamName[i+(j*5)-balancer]+"\t");
+			if (balancer < numTeam && i>((this.numTeamPeople-1)-(balancer-1)))
+			{
+				tmp=1;
 			}
+			for(int j=0; j<this.numTeam-tmp; j++){
+				System.out.print("\t"+this.teamName[j+(i*5)]+"\t");
+			}//end of inner for
 			if (i==this.numTeamPeople-2)
 			{
 				System.out.println("\n--------------------------------------------------------------------------------------");
 				break;
 			}
 			System.out.println("");
-		}
+		}//end of outer for
 	}
 	public void allProcess(){
 		this.setLeader();
@@ -173,7 +163,7 @@ class  Draw
 
 
 ///AppClass
-public class App {
+public class AppD {
 	/// mainMethod
 public static void main(String[] args){
 	int numTeamPeople = 6;
