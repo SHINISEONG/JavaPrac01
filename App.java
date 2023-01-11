@@ -6,7 +6,7 @@ class  Draw
 	int numTeamPeople;
 	int totalMember;
 	int numTeam;
-	String[] teamName = {"김동욱","김미형","김석찬","김성구","김양수","김영훈","김태희","김희수","박강락","박성원","박은진","박주현","소재연","송영준","송용범","신희성","안민호","유정호","윤예슬","이동욱","이승현","이재익","이현석","임유성","임철","전유빈","전지창","정종현","최성락"};
+	String[] teamName = {"김동욱","김미형","김석찬","김성구","김양수","김영훈","김태희","김희수","박강락","박성원","박은진","박주현","소재연","송영준","송용범","신희성","유정호","윤예슬","이동욱","이승현","이재익","이현석","임유성","임철","전유빈","전지창","정종현","최성락"};
 	int totalPeople = teamName.length;
 	int[] leader;
 	String[] leaderName;
@@ -100,8 +100,10 @@ class  Draw
 	}
 
 	public void print(){
+		///method variable
+		int balancer=0;
 		System.out.println("======================================================================================");
-		System.out.println("\t\t\t\tNcloud 2기 조 편성\t\t\t\t");
+		System.out.println("\t\t\t\tNcloud 2기 조 편성(v1.1)\t\t\t\t");
 		System.out.println("======================================================================================");
 /*-----------------------------------------예쁘게 출력 해보려던 뻘짓거리------------------------------------------
 		for (int i=0;i<this.numTeam ; i+=2)
@@ -134,12 +136,23 @@ class  Draw
 		}
 		System.out.println("\n--------------------------------------------------------------------------------------");
 		for(int i=0; i<this.numTeamPeople-1; i++){
+			balancer=0;
 			for(int j=0; j<this.numTeam; j++){
+				
+				// 개씹 하드코딩 시작
+				if (j==this.numTeam-1)
+				{
+					balancer = 1;
+				}
 				if ((i+(j*5))==((numTeamPeople-1)*numTeam))
 				{
 					break;
+				}if ((i+(j*5))==19)
+				{
+					System.out.print("\t_\t\t_");
+					break;
 				}
-				System.out.print("\t"+this.teamName[i+(j*5)]+"\t");
+				System.out.print("\t"+this.teamName[i+(j*5)-balancer]+"\t");
 			}
 			if (i==this.numTeamPeople-2)
 			{
@@ -148,7 +161,12 @@ class  Draw
 			}
 			System.out.println("");
 		}
-
+	}
+	public void allProcess(){
+		this.setLeader();
+		this.draw();
+		this.blankSort();
+		this.print();
 	}
 }// end of class
 
@@ -160,9 +178,6 @@ public class App {
 public static void main(String[] args){
 	int numTeamPeople = 6;
 	Draw draw = new Draw(numTeamPeople);
-	draw.setLeader();
-	draw.draw();
-	draw.blankSort();
-	draw.print();
+	draw.allProcess();
  }// end of main
 }// end of appclass
