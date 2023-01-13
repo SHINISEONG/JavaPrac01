@@ -99,7 +99,7 @@ class  Draw
 		}
 	}
 
-	public void print(){
+	public void print() throws Exception {
 		///method variable
 		int balancer = (this.numTeamPeople*this.numTeam)-this.totalPeople;
 		int tmp=0;
@@ -129,7 +129,7 @@ class  Draw
 		}
 		System.out.println("\n--------------------------------------------------------------------------------------");
 		for(int i = 0; i<this.numTeam; i++){
-			System.out.print("\t조장\t");
+			System.out.print("\t*조장*\t");
 		}
 		System.out.println("");
 		for(int i = 0; i<this.numTeam; i++){
@@ -142,6 +142,7 @@ class  Draw
 				tmp=1;
 			}
 			for(int j=0; j<this.numTeam-tmp; j++){
+				Thread.sleep(300);
 				System.out.print("\t"+this.teamName[j+(i*5)]+"\t");
 			}//end of inner for
 			if (i==this.numTeamPeople-2)
@@ -156,7 +157,12 @@ class  Draw
 		this.setLeader();
 		this.draw();
 		this.blankSort();
+	try{
 		this.print();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+
 	}
 }// end of class
 
