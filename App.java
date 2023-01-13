@@ -6,7 +6,7 @@ class  Draw
 	int numTeamPeople;
 	int totalMember;
 	int numTeam;
-	String[] teamName = {"김동욱","김미형","김석찬","김성구","김양수","김영훈","김태희","김희수","박강락","박성원","박은진","박주현","소재연","송영준","송용범","신희성","유정호","윤예슬","이동욱","이승현","이재익","이현석","임유성","임철","전유빈","전지창","정종현","최성락"};
+	String[] teamName = {"김동욱","김미형","김석찬","김성구","김양수","김영훈","김태희","박강락","박성원","박은진","박주현","소재연","송영준","송용범","신희성","유정호","윤예슬","이동욱","이승현","이재익","이현석","임유성","임철","전유빈","전지창","정종현","최성락"};
 	int totalPeople = teamName.length;
 	int[] leader;
 	String[] leaderName;
@@ -163,7 +163,7 @@ class  Draw
 
 
 ///AppClass
-public class AppD {
+public class App {
 	/// mainMethod
 public static void main(String[] args){
 	int numTeamPeople = 6;
